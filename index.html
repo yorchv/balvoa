@@ -2,10 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Dom detection</title>
+  <title>Balvoa</title>
+  <!-- Frameworks and Libraries CSS -->
+  <link rel="stylesheet" type="text/css" href="js/libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="js/libs/bootstrap/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="js/libs/jqueryui/jquery-ui-1.10.3.custom.min.css">
 
+  <!-- Less Files -->
+  <script type="text/javascript" src="js/libs/less/less-1.4.1.min.js"></script>
 </head>
 <body>
-
+  <script data-main="js/require.config.js" src="js/libs/requirejs-2.1.8/require.min.js"></script>
+  <!-- Require Init -->
+  <script>
+    require.callback = function() {
+      require([
+        'js/app/testing'
+      ])
+    };
+    console.log(require);
+  </script>
 </body>
 </html>

@@ -1,29 +1,45 @@
 requirejs.config({
   //By default load any module IDs from js/lib
-  baseUrl: 'js',
+  baseUrl: '/',
 
   priority: ['underscore',
-    'underscore.string',
     'jquery',
     'jqueryui',
     'bootstrap'],
 
-  //except, if the module ID starts with "app",
-  //load it from the js/app directory. paths
-  //config is relative to the baseUrl, and
-  //never includes a ".js" extension since
-  //the paths config could be for a directory.
   paths: {
-    // TODO
+    'underscore': 'js/libs/underscore-1.5.1/underscore-min',
+    'jquery': 'js/libs/jquery/jquery-2.0.3.min',
+    'backbone': 'js/libs/backbone-1.0.0/backbone-min',
+    'marionette': 'js/libs/marionette-1.1.0/backbone.marionette.min',
+
+    // Plugins
+    'bootstrap': 'js/libs/bootstrap/js/bootstrap.min',
+    'jqueryui': 'js/libs/jqueryui/jquery-ui-1.10.3.custom.min',
+    'hbs': 'js/libs/require-handlebars/hbs',
+    'Handlebars' : 'js/libs/require-handlebars/Handlebars',
+    'json2': 'js/libs/json2/json2-2013-05-26',
+    'i18nprecompile' : 'js/libs/require-handlebars/i18nprecompile'
   },
+
+  hbs: {
+    templateExtension: 'hbs',
+    partialBaseDir: 'templates',
+    disableI18n: true
+  },
+
   shim: {
+    'json2': {
+      exports : 'JSON'
+    },
     'underscore': {
       exports: '_'
     },
     'backbone': {
       deps: [
         'underscore',
-        'jquery'
+        'jquery',
+        'json2'
       ],
       exports: 'Backbone'
     },
@@ -33,6 +49,15 @@ requirejs.config({
       ],
       exports: 'Marionette'
     },
-    'bootstrap': ['jquery']
+    'hbs' : {
+      deps : ['json2', 'i18nprecompile', 'Handlebars'],
+      exports : 'hbs'
+    },
+
+    'bootstrap': ['jquery'],
+    'jqueryui': ['jquery']
+
   }
 });
+
+require(['js/app/testing']);
